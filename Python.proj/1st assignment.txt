@@ -1,0 +1,36 @@
+Lab 1 - DNA Strands
+Due: Friday, May 24th at 11:59pm
+Files
+
+Provided code: lab1.py
+Introduction
+
+DNA strands are made up of 4 molecules called nucleotides. They are Adenine, Cytosine, Guanine, Thymine (abbrieviated A, C, G, T). A forms pairs with T and Cforms pairs with G. Two strands are considered complementary if each nucleotide in one strand can form a pair with the corresponding nucleotide in the other strand. For example, AACG is complementary with TTGC.
+Task 1
+
+Complete the function areComplementary(strand1, strand2) which returns True, if and only if, two strands are complementary and False otherwise. To be clear, it should return False upon receiving malformed input. Both inputs are guaranteed to be strings, but other types of incorrect input are possible, for example, characters that are not meaningful as nucleotide abbreviations.
+Task 2
+
+Write a function which searches through a large strand of nucleotides to find the index of a smaller target strand. In order to do this, please implement each of the following functions:
+targetAtIndex(strand,target,i)
+This function examine's the parent strand and returns True if, and only if, the target> exists at index i. For example,targetAtIndex("AAAACCTAAA","CCT",4) returns True andtargetAtIndex("AAAACCTAAA","CCT",9) returns False.
+Hint: The first letter of the string is the 0th charater
+
+findTarget(strand, target)
+This function returns the first index at which the target is found, if the target is found, and -1, otherwise. For example,findTarget(AAAACCTAAA,CCT) returns 4 andfindTarget("AAAACCTAAA","TTT") returns -1.
+The target can be, as we have discussed, is composed of As,Cs, Gs, and Ts. But, for this function, we can provide an incomplete description that can match multiple targets. In particular, we can include the following "wildcard" symbols capable of pattern-matching:
+
+"." matches all letters!
+"x" matches either an "A" or a "T"!
+"y" matches either a "C" or a "G"!
+For example,targetAtIndex("AAAACCTAAA",".yx",4), includes three nucleotides, the first of which may be anything, the second of which may only be an Aor a T, and the last of which may only be a C orG.
+
+In writing this function, you may assume that all parameters are of the correct type -- but not necessarily correct.
+
+Provided Code
+
+A file called lab1.py is provided to you. It contains skeletons of the required and test functions. Any code provided within these functions is provided only to ensure that they are delivered in a syntactically correct form. It is not necessarily part of the final solution.
+Assertions and Correctness
+
+The test functions include assertions. We will learn about these in more detail later. The short version is this. The expression within each assertion is designed to be True in all viable cases. Should it ever beFalse, the program terminates immediately. This is done to help you notice the problem early, and to help you begin debugging near the location of the problem in time and code space.
+Just because your code passes all the assertions that we give you, does not mean that it is correct. The provided assertions provide only a minimum level of sanity checking and safeguarding. Please add additional assertions to force the checking of preconditions and other constraints, and otherwise ensure your code's correctness, for example through rigorous testing across many inputs.
