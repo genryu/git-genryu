@@ -1,0 +1,29 @@
+#!/usr/bin/perl -w
+use strict;
+
+use Mail::Sender;
+
+    my $sender = new Mail::Sender {
+            auth => 'PLAIN',
+            authid => 'your email userid',
+            authpwd => 'your email userid password',
+            smtp => 'your isp smtp server',
+            port => 587,
+            from => 'image@i-mageonline.com',
+            to => 'you@yourdomain.com',
+            subject => 'This is a test.',
+            msg => 'Test Message Script',
+            #file => '/home/image/Documents/Endoscopia/default.pdf',
+            #debug => "/home/image/Documents/SendMailDebug.txt",
+            #debug_level => 4,
+            #timeout => 500,
+    };
+    #my $result =  $sender->MailFile({
+    my $result =  $sender->MailMsg({
+            msg => $sender->{msg},
+            #file => $sender->{file},
+    });
+    
+    print "$sender->{error_msg}\n>>>End.\n";
+    
+1;
