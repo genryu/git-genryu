@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+use MIME::Lite;
+
+# Set this variable to your smtp server name 
+my $ServerName = "smtp.comcast.net"; 
+
+my $from_address = 'me@comcast.net';
+my $to_address   = 'me@hotmail.com';
+my $subject      = 'MIME Test: Text';
+my $mime_type    = 'text';
+my $message_body = "Testing text in email.\n";
+
+# Create the initial text of the message
+my $mime_msg = MIME::Lite->new(
+   From => $from_address,
+   To   => $to_address,
+   Subject => $subject,
+   Type => $mime_type,
+   Data => $message_body
+   )
+  or die "Error creating MIME body: $!\n";
+
+
+# Attach the text file
+my $filename = 'C:\tmp\test.txt';
+my $recommended_filename = 'test.txt';
+$mime_msg->attach(
+   Type => 'application/text',
+   Path => $filename,
+   Filename => $recommended_filename
+   )
+  or die "Error attaching text file: $!\n";
+
+# encode body of message as a string so that we can pass it to Net::SM
++TP.
+my $message_body = $mime_msg->body_as_string();
+
+# Let MIME::Lite handle the Net::SMTP details
+MIME::Lite->send('smtp', $ServerName);
+$mime_msg->send() or die "Error sending message: $!\n";
